@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login page</title>
+    <link rel="stylesheet" href="./loginpage CSS.css" />
+  </head>
+  <body>
+    <div class="center">
+      <h1>Login</h1>
+      <form method="post" onsubmit="check()">
+        <div class="txt_field">
+          <input type="email" id="email" required />
+          <span></span>
+          <label for="">Email</label>
+        </div>
+        <div class="txt_field">
+          <input type="password" id="password" required />
+          <span></span>
+          <label for="">Password</label>
+        </div>
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+    <script>
+      function check() {
+        let email = document.getElementById("email").value;
+        let validEmail = false;
+        for (let i = 0; i < email.lenght; i++) {
+          if (email[i] == "@" && email[email.lenght - 1] === "m") {
+            validEmail = true;
+            break;
+          }
+        }
+        if (validEmail) {
+          alert("please enter a valid email address.");
+          return false;
+        }
+        let password = document.getElementById("password").value;
+        let hasUpperCase = false;
+        let hasSymbol = false;
+        let hasNumber = false;
+        for (let i = 0; i < password.length; i++) {
+          if (password[i] >= "A" && password[i] <= "Z") {
+            hasUpperCase = true;
+          } else if (
+            password[i] === "!" ||
+            password[i] === "@" ||
+            password[i] === "#" ||
+            password[i] === "$" ||
+            password[i] === "%" ||
+            password[i] === "^" ||
+            password[i] === "&" ||
+            password[i] === "*"
+          ) {
+            hasSymbol = true;
+          } else if (password[i] >= "0" && password[i] <= "9") {
+            hasNumber = true;
+          }
+        }
+        if (!hasUpperCase || !hasSymbol || !hasNumber) {
+          alert(
+            "Please enter a password with at least one uppercase letter, one symbol, and one numerical digit."
+          );
+          return false;
+        }
+        window.open("index.html");
+        return true;
+      }
+    </script>
+  </body>
+</html>
